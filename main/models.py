@@ -1,7 +1,21 @@
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
+import pyrebase
 
+config = {
+  "apiKey": "AIzaSyB-3u6A7MrhDxwH4lTXlMWxbPCXeKVApFo",
+  "authDomain": "bbp2023-e96dd.firebaseapp.com",
+  "databaseURL": "https://bbp2023-e96dd-default-rtdb.firebaseio.com",
+  "projectId": "bbp2023-e96dd",
+  "storageBucket": "bbp2023-e96dd.appspot.com",
+  "messagingSenderId": "277712220475",
+  "appId": "1:277712220475:web:fc8cefbd2e748918ca071e",
+  "measurementId": "G-F3TE7LZ0X0"
+};
+
+firebase=pyrebase.initialize_app(config)
+database=firebase.database()
 # from firebase_admin import db
 
 # Create your models here.

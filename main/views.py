@@ -41,7 +41,7 @@ def main(request):
       contentInfo['id'] = item.key()
       
       array.append(contentInfo)
-  return render(request, 'main.html', {'allcontent': array})
+  return render(request, 'main/main.html', {'allcontent': array})
 
 def content(request, contentID):
   url = database.child('content').child(contentID).child('fileURL').get().val()
@@ -50,7 +50,7 @@ def content(request, contentID):
   title = database.child('content').child(contentID).child('title').get().val()
 
   permission = database.child('assignments').child(contentID).child('userID').get().val()
-  return render(request, 'content.html', {'url': url, 'topics': topics, 'tags': tags, 'title': title, 'permission': permission})
+  return render(request, 'main/content.html', {'url': url, 'topics': topics, 'tags': tags, 'title': title, 'permission': permission})
 
 def get_content_by_category(request):
     # if request.method == 'GET':
@@ -98,12 +98,12 @@ def category(request, category):
         
       array.append(contentInfo)
 
-  return render(request, 'category.html', {'allcontent': array})
+  return render(request, 'main/category.html', {'allcontent': array})
 
 def logged(request):
-  template = loader.get_template('logged.html')
+  template = loader.get_template('main/logged.html')
   return HttpResponse(template.render())
 
 def teesandcees(request):
-  template = loader.get_template('teesandcees.html')
+  template = loader.get_template('main/teesandcees.html')
   return HttpResponse(template.render())

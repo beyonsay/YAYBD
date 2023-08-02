@@ -51,12 +51,16 @@
 <body>
 	<nav class="navbar navbar-light bg-light">
 		<a class="navbar-brand" href="{% url 'main:main' %}">
-			<img src="{% static '/images/hci-logo.jpeg' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
+			<img src="{% static '/images/BBP-Logo.png' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
 		</a>
-		<a class="navbar-brand" href="{% url 'main:main' %}">
+		<!-- <a class="navbar-brand" href="{% url 'main:main' %}">
 			<img src="{% static '/images/inethi-logo.jpeg' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
-		</a>
+		</a> -->
+		<div class="navbar-nav">
+			<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+		  </div>
 	</nav>
+	
 	<!-- <div class="sidenav">
 		<a href="{% url 'main:main' %}">Home</a>
 		<a href="/create">Login</a>
