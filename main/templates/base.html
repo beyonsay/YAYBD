@@ -1,0 +1,91 @@
+<!-- base.html -->
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+	<style type="text/css">
+		.sidenav {
+			width: 100%;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 2em;
+		}
+
+		.sidenav a {
+			padding: 0.6em 0.8em 0.6em 0.16em;
+			text-decoration: none;
+			font-size: 2.5em;
+			color: #818181;
+		}
+
+		.sidenav a:hover {
+			color: #f1f1f1;
+		}
+
+		.main {
+			/* margin-left: 16em; */
+			padding: 0em 1em;
+			/* margin-top: 6em; */
+			/* Add margin to push the content below the sidenav */
+		}
+
+		ul {
+			list-style-type: none;
+		}
+	</style>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<title>{% block title %}Main Page{% endblock %}</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-light bg-light">
+		<a class="navbar-brand" href="{% url 'main:main' %}">
+			<img src="{% static '/images/hci-logo.jpeg' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
+		</a>
+		<a class="navbar-brand" href="{% url 'main:main' %}">
+			<img src="{% static '/images/inethi-logo.jpeg' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
+		</a>
+	</nav>
+	<!-- <div class="sidenav">
+		<a href="{% url 'main:main' %}">Home</a>
+		<a href="/create">Login</a>
+	</div> -->
+
+	<div id="content" name="content" class="main">
+		<!-- <h1 class="mt-2">My Site</h1> -->
+		<hr class="mt-0 mb-4">
+		{% block content %}
+		{% endblock %}
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
+<footer class="bg-light text-center text-lg-start">
+	<!-- Copyright -->
+	<div class="text-center p-3">
+		<a href="{% url 'main:teesandcees' %}">Terms and Conditions</a>
+	</div>
+	<!-- Copyright -->
+</footer>
+
+</html>

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %} Logged In Page {% endblock %}
+{% block content %}
+
+<div class="row justify-content-center align-items-center">
+    <div class="card mb-3" style="width: 40rem;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Welcome to the BBP Portal, Name</h5>
+                    <a href="#" class="card-link">Click here to find out more about the UCT Research Project.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center align-items-center">
+    <div class="card mb-3" style="width: 40rem;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <a href="#" class="card-link">Click here to download the Android Mobile App</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <h3>Assigned Content:</h3>
+
+    <div class="btn-group-vertical" role="group" aria-label="Option Menu">
+        <button type="button" class="btn btn-primary mb-2">
+            <span class="d-flex align-items-center">
+                <img src="path/to/image.jpg" alt="Image" class="mr-2">
+                <span>Text</span>
+            </span>
+        </button>
+    </div>
+</div>
+
+<div class="text-center">
+    <h3>Public Categories:</h3>
+
+    <div class="btn-group-vertical" role="group" aria-label="Option Menu">
+        <button type="button" class="btn btn-primary mb-2">
+            <span class="d-flex align-items-center">
+                <img src="path/to/image.jpg" alt="Image" class="mr-2">
+                <span>Text</span>
+            </span>
+        </button>
+        <button type="button" class="btn btn-primary mb-2">
+            <span class="d-flex align-items-center">
+                <img src="path/to/image.jpg" alt="Image" class="mr-2">
+                <span>Text</span>
+            </span>
+        </button>
+        <button type="button" class="btn btn-primary mb-2">
+            <span class="d-flex align-items-center">
+                <img src="path/to/image.jpg" alt="Image" class="mr-2">
+                <span>Text</span>
+            </span>
+        </button>
+    </div>
+</div>
+
+<div class="text-center">
+    <h3>Browse available ECD Content:</h3>
+
+    <p>To view your assigned content, <a href="#"> please log in here.</a></p>
+
+    <div class="d-flex justify-content-center">
+        <div class="btn-group" role="group" aria-label="Option Menu">
+            <button type="button" class="btn btn-primary mr-2">Assigned content</button>
+            <button type="button" class="btn btn-primary mr-2">Button 1</button>
+            <button type="button" class="btn btn-primary mr-2">Button 2</button>
+            <button type="button" class="btn btn-primary mr-2">Button 3</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>File Results</h1>
+        <div class="row">
+            {% for result in results %}
+            <div class="col-md-6">
+                <h2>{{ result.file_name }}</h2>
+                <p>{{ result.result }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary mr-3">Logout</button>
+{% endblock %}
