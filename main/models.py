@@ -43,24 +43,31 @@ class Content(models.Model):
     )
 
     TOPICS = (
-        ('babyDev', 'BabyDev'),
-        ('babyHealth', 'BabyHealth'),
-        ('parentHealth', 'ParentHealth'),
+        ('babyDev', 'Baby Development'),
+        ('babyHealth', 'Baby Health'),
+        ('parentHealth', 'Parent Health'),
     )
 
     LANG = (
         ('english', 'English'),
-        ('xhosa', 'Xhosa'),
-        ('shona', 'Shona'),
+        ('isiXhosa', 'IsiXhosa'),
+        ('chiShona', 'ChiShona'),
+        ('afrikaans', 'Afrikaans'),
+    )
+
+    VISIBILITY = (
+        ('public', 'Public'),
+        ('private', 'Private'),
     )
 
     idContent = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=500)
     file = models.FileField(upload_to='media/')
-    fileURL = models.CharField(max_length=50)
+    # fileURL = models.CharField(max_length=50)
+    visible = models.CharField(max_length=10, choices=VISIBILITY)
     tag = models.CharField(max_length=10, choices=TAGS)
     topics = models.CharField(max_length=15, choices=TOPICS)
-    language = models.CharField(max_length=8, choices=LANG)
+    language = models.CharField(max_length=15, choices=LANG)
 
     class Meta:
         db_table = 'Content'
