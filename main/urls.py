@@ -19,6 +19,8 @@ Including another URLconf
 # from yayb2.views import hello_geeks, main, content, logged
 from django.urls import path, re_path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'main'
 
@@ -31,3 +33,6 @@ urlpatterns = [
     path('content/<str:contentID>/', views.content, name='content'),
     path('category/<str:category>/', views.category, name='category'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

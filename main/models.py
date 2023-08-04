@@ -3,19 +3,19 @@ import uuid
 from django.contrib.auth.models import User
 import pyrebase
 
-config = {
-  "apiKey": "AIzaSyB-3u6A7MrhDxwH4lTXlMWxbPCXeKVApFo",
-  "authDomain": "bbp2023-e96dd.firebaseapp.com",
-  "databaseURL": "https://bbp2023-e96dd-default-rtdb.firebaseio.com",
-  "projectId": "bbp2023-e96dd",
-  "storageBucket": "bbp2023-e96dd.appspot.com",
-  "messagingSenderId": "277712220475",
-  "appId": "1:277712220475:web:fc8cefbd2e748918ca071e",
-  "measurementId": "G-F3TE7LZ0X0"
-};
+# config = {
+#   "apiKey": "AIzaSyB-3u6A7MrhDxwH4lTXlMWxbPCXeKVApFo",
+#   "authDomain": "bbp2023-e96dd.firebaseapp.com",
+#   "databaseURL": "https://bbp2023-e96dd-default-rtdb.firebaseio.com",
+#   "projectId": "bbp2023-e96dd",
+#   "storageBucket": "bbp2023-e96dd.appspot.com",
+#   "messagingSenderId": "277712220475",
+#   "appId": "1:277712220475:web:fc8cefbd2e748918ca071e",
+#   "measurementId": "G-F3TE7LZ0X0"
+# };
 
-firebase=pyrebase.initialize_app(config)
-database=firebase.database()
+# firebase=pyrebase.initialize_app(config)
+# database=firebase.database()
 # from firebase_admin import db
 
 # Create your models here.
@@ -43,9 +43,9 @@ class Content(models.Model):
     )
 
     TOPICS = (
-        ('babyDev', 'Baby Development'),
-        ('babyHealth', 'Baby Health'),
-        ('parentHealth', 'Parent Health'),
+        ('Baby Development', 'Baby Development'),
+        ('Baby Health', 'Baby Health'),
+        ('Parent Health', 'Parent Health'),
     )
 
     LANG = (
@@ -62,11 +62,11 @@ class Content(models.Model):
 
     idContent = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=500)
-    file = models.FileField(upload_to='media/')
+    file = models.FileField()
     # fileURL = models.CharField(max_length=50)
     visible = models.CharField(max_length=10, choices=VISIBILITY)
     tag = models.CharField(max_length=10, choices=TAGS)
-    topics = models.CharField(max_length=15, choices=TOPICS)
+    topics = models.CharField(max_length=30, choices=TOPICS)
     language = models.CharField(max_length=15, choices=LANG)
 
     class Meta:

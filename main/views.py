@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+import os
 # Create your views here.
 # HttpResponse is used to
 # pass the information
@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.template import loader
+from .models import Content
+
 import pyrebase
 
 config = {
@@ -24,39 +26,52 @@ firebase=pyrebase.initialize_app(config)
 database=firebase.database()
 
 def main(request):
-  allcontent = database.child('content').get()
+  # allcontent = database.child('content').get()
 
-  permission = ""
-  array = []
-  for item in allcontent.each():
-    permission = database.child('assignments').child(item.key()).child('userID').get().val()
+  # permission = ""
+  # array = []
+  # for item in allcontent.each():
+  #   permission = database.child('assignments').child(item.key()).child('userID').get().val()
 
-    contentInfo = {'url': '', 'topics': '', 'tags':'', 'title': '', 'id': ''}
+  #   contentInfo = {'url': '', 'topics': '', 'tags':'', 'title': '', 'id': ''}
 
-    if permission == "everyone":
-      contentInfo['url'] = database.child('content').child(item.key()).child('fileURL').get().val()
-      contentInfo['topics'] = database.child('content').child(item.key()).child('topics').get().val()
-      contentInfo['tags'] = database.child('content').child(item.key()).child('tags').get().val()
-      contentInfo['title'] = database.child('content').child(item.key()).child('title').get().val()
-      contentInfo['id'] = item.key()
+  #   if permission == "everyone":
+  #     contentInfo['url'] = database.child('content').child(item.key()).child('fileURL').get().val()
+  #     contentInfo['topics'] = database.child('content').child(item.key()).child('topics').get().val()
+  #     contentInfo['tags'] = database.child('content').child(item.key()).child('tags').get().val()
+  #     contentInfo['title'] = database.child('content').child(item.key()).child('title').get().val()
+  #     contentInfo['id'] = item.key()
       
-      array.append(contentInfo)
-  return render(request, 'main/main.html', {'allcontent': array})
+  #     array.append(contentInfo)
+  allcontent = Content.objects.filter(visible="public")
+  print(allcontent)
+
+  if os.access('\media\Breast-milk-expression-AfrikaansAfrikaans_vOkikhj.mp4', os.R_OK):
+      print("Read permission is granted for the file.")
+  else:
+      print("Read permission is not granted for the file.")
+
+  return render(request, 'main/main.html', {'allcontent': allcontent})
 
 def content(request, contentID):
-  url = database.child('content').child(contentID).child('fileURL').get().val()
-  topics = database.child('content').child(contentID).child('topics').get().val()
-  tags = database.child('content').child(contentID).child('tags').get().val()
-  title = database.child('content').child(contentID).child('title').get().val()
+  # url = database.child('content').child(contentID).child('fileURL').get().val()
+  # topics = database.child('content').child(contentID).child('topics').get().val()
+  # tags = database.child('content').child(contentID).child('tags').get().val()
+  # title = database.child('content').child(contentID).child('title').get().val()
 
-  permission = database.child('assignments').child(contentID).child('userID').get().val()
-  return render(request, 'main/content.html', {'url': url, 'topics': topics, 'tags': tags, 'title': title, 'permission': permission})
+  # permission = database.child('assignments').child(contentID).child('userID').get().val()
+  # return render(request, 'main/content.html', {'url': url, 'topics': topics, 'tags': tags, 'title': title, 'permission': permission})
+
+  file = Content.objects.get(idContent=contentID)
+  print(contentID, file.file)
+  # topics = database.child('content').child(contentID).child('topics').get().val()
+  # tags = database.child('content').child(contentID).child('tags').get().val()
+  # title = database.child('content').child(contentID).child('title').get().val()
+
+  # permission = database.child('assignments').child(contentID).child('userID').get().val()
+  return render(request, 'main/content.html', {'content': file})
 
 def get_content_by_category(request):
-    # if request.method == 'GET':
-    #   topic = request.GET.get('topic')
-    #   # content = Content.objects.filter(category_id=category_id).values('title', 'body')
-    #   # return JsonResponse(list(content), safe=False)
       allcontent = database.child('content').get()
       permission = ""
       array = []

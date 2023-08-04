@@ -9,31 +9,31 @@
 </div>
 
 <div class="header">
-    <h2>{{title}}</h2>
-    <h4>{{topics}}</h4>
+    <h2>{{content.title}}</h2>
+    <h4>{{content.topics}}</h4>
 </div>
 
 <div class="content">
-    {% if tags == "pdf" %}
-    <embed src="{{ url }}" type="application/pdf" width="100%" height="600px" />
-    {% elif tags == "video" %}
+    {% if content.tag == "pdf" %}
+    <embed src="{{ content.file.url }}" type="application/pdf" width="100%" height="600px" />
+    {% elif content.tag == "video" %}
     <video width="100%" height="auto" controls>
-        <source src="{{ url }}" type="video/mp4">
+        <source src="{{ content.file.url }}" type="video/mp4">
     </video>
-    {% elif tags == "image" %}
-        <img src="{{ url }}" alt="{{ title }}">
+    {% elif content.tag == "image" %}
+        <img src="{{ content.file.url }}" alt="{{ title }}">
     {% else %}
-        <p>Unsupported file type: {{ tags }}</p>
+        <p>Unsupported file type: {{ content.tag }}</p>
     {% endif %}
 
 </div>
 
-{% if permission == 'admin' %}
+<!-- {% if permission == 'admin' %}
     <div class="information">
         <p>Current User: Guests</p>
         <p>This is a public resource for everyone to view.</p>
     </div>
-{% endif %}
+{% endif %} -->
 
 <div>
     <!-- <h3>Browse more available content:</h3>
