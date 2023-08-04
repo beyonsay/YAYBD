@@ -46,10 +46,10 @@ def main(request):
   allcontent = Content.objects.filter(visible="public")
   print(allcontent)
 
-  if os.access('\media\Breast-milk-expression-AfrikaansAfrikaans_vOkikhj.mp4', os.R_OK):
-      print("Read permission is granted for the file.")
-  else:
-      print("Read permission is not granted for the file.")
+  # if os.access('\media\Breast-milk-expression-AfrikaansAfrikaans_vOkikhj.mp4', os.R_OK):
+  #     print("Read permission is granted for the file.")
+  # else:
+  #     print("Read permission is not granted for the file.")
 
   return render(request, 'main/main.html', {'allcontent': allcontent})
 
@@ -94,26 +94,28 @@ def get_content_by_category(request):
       # return render(request, 'main.html', {'allcontent': array})
 
 def category(request, category):
-  allcontent = database.child('content').get()  #getting everything from the content "table"
-  permission = ""       #will be used to check permissions of a content item
-  array = []            #will store all content to be displayed
+  # allcontent = database.child('content').get()  #getting everything from the content "table"
+  # permission = ""       #will be used to check permissions of a content item
+  # array = []            #will store all content to be displayed
 
-  for item in allcontent.each():
-    permission = database.child('assignments').child(item.key()).child('userID').get().val()
+  # for item in allcontent.each():
+  #   permission = database.child('assignments').child(item.key()).child('userID').get().val()
 
-    contentInfo = {'url': '', 'topics': '', 'tags':'', 'title': '', 'id': ''}
-    topics =  database.child('content').child(item.key()).child('topics').get().val()
+  #   contentInfo = {'url': '', 'topics': '', 'tags':'', 'title': '', 'id': ''}
+  #   topics =  database.child('content').child(item.key()).child('topics').get().val()
 
-    if permission == "everyone" and category in topics: #if this is an item that everyone can access and is part of the category
-      contentInfo['url'] = database.child('content').child(item.key()).child('fileURL').get().val()
-      contentInfo['topics'] = database.child('content').child(item.key()).child('topics').get().val()
-      contentInfo['tags'] = database.child('content').child(item.key()).child('tags').get().val()
-      contentInfo['title'] = database.child('content').child(item.key()).child('title').get().val()
-      contentInfo['id'] = item.key()
+  #   if permission == "everyone" and category in topics: #if this is an item that everyone can access and is part of the category
+  #     contentInfo['url'] = database.child('content').child(item.key()).child('fileURL').get().val()
+  #     contentInfo['topics'] = database.child('content').child(item.key()).child('topics').get().val()
+  #     contentInfo['tags'] = database.child('content').child(item.key()).child('tags').get().val()
+  #     contentInfo['title'] = database.child('content').child(item.key()).child('title').get().val()
+  #     contentInfo['id'] = item.key()
         
-      array.append(contentInfo)
+  #     array.append(contentInfo)
 
-  return render(request, 'main/category.html', {'allcontent': array})
+  allcontent = Content.objects.filter(visible="public").filter(topics=category)
+
+  return render(request, 'main/category.html', {'allcontent': allcontent})
 
 def logged(request):
   template = loader.get_template('main/logged.html')

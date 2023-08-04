@@ -49,10 +49,10 @@ class Content(models.Model):
     )
 
     LANG = (
-        ('english', 'English'),
-        ('isiXhosa', 'IsiXhosa'),
-        ('chiShona', 'ChiShona'),
-        ('afrikaans', 'Afrikaans'),
+        ('English', 'English'),
+        ('IsiXhosa', 'IsiXhosa'),
+        ('ChiShona', 'ChiShona'),
+        ('Afrikaans', 'Afrikaans'),
     )
 
     VISIBILITY = (
