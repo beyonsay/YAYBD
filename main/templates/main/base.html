@@ -57,8 +57,13 @@
 			<img src="{% static '/images/inethi-logo.jpeg' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
 		</a> -->
 		<div class="navbar-nav">
-			<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-		  </div>
+			{% if user.is_authenticated %}
+				<a class="nav-item nav-link" href="{% url 'assigned' %}">Assigned Content</a>
+				<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+			{% else %}
+				<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+			{% endif %}
+		</div>
 	</nav>
 	
 	<!-- <div class="sidenav">

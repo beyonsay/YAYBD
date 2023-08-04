@@ -2,6 +2,8 @@ from django.db import models
 import uuid
 from django.contrib.auth.models import User
 import pyrebase
+from django.contrib import admin
+from django.forms import CheckboxSelectMultiple
 
 # config = {
 #   "apiKey": "AIzaSyB-3u6A7MrhDxwH4lTXlMWxbPCXeKVApFo",
@@ -68,6 +70,7 @@ class Content(models.Model):
     tag = models.CharField(max_length=10, choices=TAGS)
     topics = models.CharField(max_length=30, choices=TOPICS)
     language = models.CharField(max_length=15, choices=LANG)
+    assignedUsers = models.ManyToManyField(User, blank=True)
 
     class Meta:
         db_table = 'Content'
@@ -82,6 +85,11 @@ class Content(models.Model):
 
 # #     class Meta:
 # #         db_table = 'Assignments'
+
+class MyModelAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
 
 class Assignment(models.Model):
     ASSIGNMENT_TYPE_CHOICES = (
