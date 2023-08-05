@@ -35,7 +35,18 @@
   </div>
 </div>
 
-<!-- <p class="text-center">To view your assigned content, <a href="#"> please log in here.</a></p> -->
+
+{% if user.is_authenticated %}
+<h3 class="text-center">Assigned Content:</h3>
+<div class="col-md-4 mx-auto">
+  <a href="{% url 'users:assigned'%}" class="btn btn-primary btn-lg btn-block mb-2">
+    <span class="d-flex align-items-center">
+      <img src="{% static '/images/assigned.png' %}" alt="Key Image" class="mr-2">
+      <span>Assigned Content</span>
+    </span>
+  </a>
+</div>
+{% endif %}
 
 <div class="text-center">
   <h3>Public Categories:</h3>
@@ -72,9 +83,11 @@
   <div class="d-flex justify-content-center">
     <ul class="btn-group" role="group" aria-label="Option Menu" id="category-list">
       <li><button type="button" class="btn btn-primary mr-2" data-category-id="All">All</button></li>
-      <li><button type="button" class="btn btn-primary mr-2" data-category-id="Baby Development">Baby Development</button></li>
+      <li><button type="button" class="btn btn-primary mr-2" data-category-id="Baby Development">Baby
+          Development</button></li>
       <li><button type="button" class="btn btn-primary mr-2" data-category-id="Baby Health">Baby Health</button></li>
-      <li><button type="button" class="btn btn-primary mr-2" data-category-id="Parent Health">Parent Health</button></li>
+      <li><button type="button" class="btn btn-primary mr-2" data-category-id="Parent Health">Parent Health</button>
+      </li>
     </ul>
   </div>
 

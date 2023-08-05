@@ -58,7 +58,7 @@
 		</a> -->
 		<div class="navbar-nav">
 			{% if user.is_authenticated %}
-				<a class="nav-item nav-link" href="{% url 'assigned' %}">Assigned Content</a>
+				<a class="nav-item nav-link" href="{% url 'users:assigned' %}">Assigned Content</a>
 				<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
 			{% else %}
 				<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>

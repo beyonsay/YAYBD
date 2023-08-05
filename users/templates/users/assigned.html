@@ -1,6 +1,29 @@
-{% extends "main/base.html" %}
+{% extends 'main/base.html' %}
+{% block title %} Assigned Page {% endblock %}
 {% block content %}
+{% load static %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <a href="{% url 'main:main' %}" class="btn btn-primary">Return to Main Page</a>
+        </div>
+    </div>
 
-    <h2>Hello</h2>
-
-{% endblock content %}
+    <div class="row" id = "content-container">
+      {% for result in allcontent %}
+      <div class="col-md-6" style="margin-bottom: 2%;">
+        <div class="card">
+          <h2>{{ result.title }}</h2>
+          <p>
+            <span class="badge badge-primary" style="margin-right: 0.3125%;">{{ result.topics }}</span>
+            <span class="badge badge-primary">{{ result.language }}</span>
+          </p>
+          <a href="{% url 'main:content' contentID=result.idContent %}">
+            <button class="btn btn-primary btn-block">View Content</button>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
