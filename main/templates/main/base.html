@@ -53,15 +53,19 @@
 		<a class="navbar-brand" href="{% url 'main:main' %}">
 			<img src="{% static '/images/BBP-Logo.png' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
 		</a>
-		<!-- <a class="navbar-brand" href="{% url 'main:main' %}">
-			<img src="{% static '/images/inethi-logo.jpeg' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
-		</a> -->
 		<div class="navbar-nav">
 			{% if user.is_authenticated %}
-				<a class="nav-item nav-link" href="{% url 'users:assigned' %}">Assigned Content</a>
-				<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+				<!-- <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a> -->
+				<a class="navbar-brand" href="{% url 'logout' %}">
+					<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
+					Logout
+				  </a>
 			{% else %}
-				<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+				<!-- <a class="nav-item nav-link" href="{% url 'login' %}">Login</a> -->
+				<a class="navbar-brand" href="{% url 'login' %}">
+					<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
+					Login
+				  </a>
 			{% endif %}
 		</div>
 	</nav>

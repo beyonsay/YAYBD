@@ -10,7 +10,11 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
+          {% if user.is_authenticated %}
+          <h5 class="card-title">Welcome to the BBP Portal, {{user.username}}</h5>
+          {% else %}
           <h5 class="card-title">Welcome to the BBP Portal</h5>
+          {% endif %}
           <a href="{% url 'main:teesandcees' %}" class="card-link">Click here to find out more about the UCT Research
             Project.</a>
         </div>
@@ -97,7 +101,8 @@
       <div class="col-md-6 content-item" data-category="{{ result.topics }}">
         <div class="card" style="margin-bottom: 2%;">
           <h2>{{ result.title }}</h2>
-          <p><span class="badge badge-primary" style="margin-right: 0.3125%;">{{ result.topics }}</span>
+          <p>
+            <span class="badge badge-primary" style="margin-right: 0.3125%;">{{ result.topics }}</span>
             <span class="badge badge-primary">{{ result.language }}</span>
           </p>
           <a href="{% url 'main:content' contentID=result.idContent %}">
