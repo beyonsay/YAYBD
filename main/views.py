@@ -117,10 +117,6 @@ def category(request, category):
 
   return render(request, 'main/category.html', {'allcontent': allcontent})
 
-def logged(request):
-  template = loader.get_template('main/logged.html')
-  return HttpResponse(template.render())
-
 def teesandcees(request):
   template = loader.get_template('main/teesandcees.html')
   return HttpResponse(template.render())
