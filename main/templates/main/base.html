@@ -5,6 +5,10 @@
 
 <head>
 	<style type="text/css">
+				ul {
+			list-style-type: none;
+		}
+
 		.sidenav {
 			width: 100%;
 			position: fixed;
@@ -33,10 +37,27 @@
 			/* margin-top: 6em; */
 			/* Add margin to push the content below the sidenav */
 		}
-
-		ul {
-			list-style-type: none;
+		.button-style {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #d4d4d4;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 5px;
+			transition: background-color 0.3s ease-in-out;
 		}
+
+		.button-style:hover {
+			background-color: #0056b3;
+		}
+
+		.card img {
+			max-width: 75%;
+			margin: auto;
+			padding: 0.5em;
+		}
+
+
 	</style>
 
 	<meta charset="utf-8">
@@ -54,19 +75,28 @@
 			<img src="{% static '/images/BBP-Logo.png' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
 		</a>
 		<div class="navbar-nav">
-			{% if user.is_authenticated %}
-				<!-- <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a> -->
-				<a class="navbar-brand" href="{% url 'logout' %}">
-					<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
-					Logout
-				  </a>
+			<ul class="nav nav-pills nav-justified">
+				{% if user.is_authenticated %}
+					{% if user.username == 'BBPAdmin' %}
+					<a class="navbar-brand button-style" href="{% url 'admin:index' %}">
+						<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
+						Admin Site
+					</a>
+					{% endif %}
+
+					<a class="navbar-brand button-style" href="{% url 'logout' %}">
+						<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
+						Logout
+					</a>
+
+			
 			{% else %}
-				<!-- <a class="nav-item nav-link" href="{% url 'login' %}">Login</a> -->
-				<a class="navbar-brand" href="{% url 'login' %}">
+				<a class="navbar-brand button-style" href="{% url 'login' %}">
 					<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
 					Login
 				  </a>
 			{% endif %}
+		</ul>
 		</div>
 	</nav>
 	
