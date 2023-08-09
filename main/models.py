@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
-import pyrebase
+# import pyrebase
 from django.contrib import admin
 from django.forms import CheckboxSelectMultiple
 
@@ -78,18 +78,23 @@ class Content(models.Model):
     def __str__(self):
         return self.title
 
-# # class Assignments(models.Model):
-# #     Id = models.IntegerField(primary_key=True)
-# #     idContent = models.IntegerField()
-# #     idUser = models.IntegerField()
-
-# #     class Meta:
-# #         db_table = 'Assignments'
-
 class MyModelAdmin(admin.ModelAdmin):
+    list_display = ['title', 'visible', 'tag', 'topics', 'language', 'display_assigned_users']
+    search_fields = ('title',)
+    list_filter = ('topics',)
+    list_per_page = 20
+
     formfield_overrides = {
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
+
+    def display_assigned_users(self, obj):
+        return ", ".join([user.username for user in obj.assignedUsers.all()])
+
+    display_assigned_users.short_description = 'Assigned Users'
+
+class ModelAdmin(admin.ModelAdmin):
+        list_display = ['title', 'visible', 'tag', 'topics', 'language', 'assignedUsers']
 
 class Assignment(models.Model):
     ASSIGNMENT_TYPE_CHOICES = (

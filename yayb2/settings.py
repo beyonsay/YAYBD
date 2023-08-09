@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,12 +85,16 @@ DATABASES = {
         "NAME": "yayb",
         "USER": "admin",
         "PASSWORD": "youandyourbaby",
-        "HOST": "127.0.0.1",
-        "PORT": "5433",
+        "HOST": "database.cjg9ckuq0ifq.eu-north-1.rds.amazonaws.com",
+        "PORT": "5432",
     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # "default": {
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     "NAME": "yayb",
+    #     "USER": "admin",
+    #     "PASSWORD": "youandyourbaby",
+    #     "HOST": "127.0.0.1",
+    #     "PORT": "5433",
     # }
 }
 
