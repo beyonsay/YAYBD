@@ -28,8 +28,6 @@ urlpatterns = [
     path('', views.main, name='main'),
     path('get_content', views.get_content_by_category, name='get_content_by_category'),
     path('teesandcees/', views.teesandcees, name='teesandcees'),
-    # re_path(r'^(?P<contentID>.+)/$', views.content, name='content'),
-    # re_path(r'^(?P<category>.+)/$', views.category, name='category'),
     path('content/<str:contentID>/', views.content, name='content'),
     path('category/<str:category>/', views.category, name='category'),
 ]

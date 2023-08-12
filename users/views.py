@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from .models import Content
+from main.models import Content
 
 from django.contrib.auth.decorators import login_required
 
