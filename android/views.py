@@ -35,8 +35,8 @@ def test_token(request):
     return Response("passed!")
 
 @api_view(['GET'])
-@authentication_classes([SessionAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([SessionAuthentication, TokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def get_all_content(request):
     allcontent = Content.objects.filter(visible="public")
     serializer = ContentSerializer(allcontent, many=True, context={'request': request})  # Serialize a queryset of objects

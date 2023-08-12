@@ -11,7 +11,7 @@ Authorization: token de598928d110e6068b174a79a7c1da685abef736
 ###
 GET http://127.0.0.1:8000/get_all_content
 Content-Type: application/json 
-Authorization: token de598928d110e6068b174a79a7c1da685abef736
+# Authorization: token de598928d110e6068b174a79a7c1da685abef736
 
 ###
 GET http://127.0.0.1:8000/android_login
