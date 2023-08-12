@@ -34,7 +34,6 @@ ALLOWED_HOSTS = [ 'yayb.onrender.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'render.apps.RenderConfig',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
