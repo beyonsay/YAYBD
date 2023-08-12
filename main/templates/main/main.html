@@ -31,7 +31,6 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <!-- <a href="#" class="card-link">Click here to download the Android Mobile App</a> -->
           <a href="#" class="card-link">An Android Mobile App will soon be available.</a>
         </div>
       </div>
@@ -43,7 +42,7 @@
 {% if user.is_authenticated %}
 <h3 class="text-center">Assigned Content:</h3>
 <div class="col-md-4 mx-auto">
-  <a href="{% url 'users:assigned'%}" class="btn btn-primary btn-lg btn-block mb-2">
+  <a href="{% url 'users:assigned'%}" class="btn btn-primary btn-lg btn-block mb-2 border-0" style="background-color: #dc0ab4;">
     <span class="d-flex align-items-center">
       <img src="{% static '/images/assigned.png' %}" alt="Key Image" class="mr-2">
       <span>Assigned Content</span>
@@ -57,19 +56,22 @@
 
   <div class="row">
     <div class="col-md-4 mx-auto">
-      <a href="{% url 'main:category' category='Baby Development' %}" class="btn btn-primary btn-lg btn-block mb-2">
+      <a href="{% url 'main:category' category='Baby Development' %}" class="btn btn-primary btn-lg btn-block mb-2 border-0"
+        style="background-color: #ffa300;">
         <span class="d-flex align-items-center">
           <img src="{% static '/images/baby.png' %}" alt="Baby Image" class="mr-2">
           <span>Baby Development</span>
         </span>
       </a>
-      <a href="{% url 'main:category' category='Baby Health' %}" class="btn btn-primary btn-lg btn-block mb-2">
+      <a href="{% url 'main:category' category='Baby Health' %}" class="btn btn-primary btn-lg btn-block mb-2 border-0"
+        style="background-color: #00bfa0;">
         <span class="d-flex align-items-center">
           <img src="{% static '/images/health.png' %}" alt="Thermometer Health Image" class="mr-2">
           <span>Baby Health</span>
         </span>
       </a>
-      <a href="{% url 'main:category' category='Parent Health' %}" class="btn btn-primary btn-lg btn-block mb-2">
+      <a href="{% url 'main:category' category='Parent Health' %}" class="btn btn-primary btn-lg btn-block mb-2 border-0"
+        style="background-color: #9b19f5;">
         <span class="d-flex align-items-center">
           <img src="{% static '/images/parent.png' %}" alt="Parent Image" class="mr-2">
           <span>Parent Health</span>
@@ -82,15 +84,17 @@
 <div class="text-center">
   <h3>Browse available ECD Content:</h3>
 
-  <!-- <p>To view your assigned content, <a href="#"> please log in here.</a></p> -->
   <script src="{% static 'js/dynamic_content.js' %}"></script>
   <div class="d-flex justify-content-center">
     <ul class="btn-group" role="group" aria-label="Option Menu" id="category-list">
-      <li><button type="button" class="btn btn-primary mr-2" data-category-id="All">All</button></li>
-      <li><button type="button" class="btn btn-primary mr-2" data-category-id="Baby Development">Baby
+      <li><button type="button" class="btn btn-primary mr-2 border-0" data-category-id="All">All</button></li>
+      <li><button type="button" class="btn btn-primary mr-2 border-0" data-category-id="Baby Development"
+          style="background-color: #ffa300;">Baby
           Development</button></li>
-      <li><button type="button" class="btn btn-primary mr-2" data-category-id="Baby Health">Baby Health</button></li>
-      <li><button type="button" class="btn btn-primary mr-2" data-category-id="Parent Health">Parent Health</button>
+      <li><button type="button" class="btn btn-primary mr-2 border-0" data-category-id="Baby Health"
+          style="background-color: #00bfa0;">Baby Health</button></li>
+      <li><button type="button" class="btn btn-primary mr-2 border-0" data-category-id="Parent Health"
+          style="background-color: #9b19f5;">Parent Health</button>
       </li>
     </ul>
   </div>
@@ -101,13 +105,48 @@
       <div class="col-md-6 content-item" data-category="{{ result.topics }}">
         <div class="card" style="margin-bottom: 2%;">
           <h2>{{ result.title }}</h2>
+          {% if result.topics == 'Baby Development' %}
           <p>
-            <span class="badge badge-primary" style="margin-right: 0.3125%;">{{ result.topics }}</span>
-            <span class="badge badge-primary">{{ result.language }}</span>
+            <span class="badge badge-primary category-badge"
+              style="margin-right: 0.3125%; background-color: #ffa300;">{{ result.topics }}</span>
+            <span class="badge badge-light">{{ result.language }}</span>
           </p>
           <a href="{% url 'main:content' contentID=result.idContent %}">
-            <button class="btn btn-primary btn-block">View Content</button>
+            <button class="btn btn-primary btn-block category-button border-0" style="background-color: #ffa300;">View
+              Content</button>
           </a>
+
+          {% elif result.topics == 'Baby Health' %}
+          <p>
+            <span class="badge badge-primary category-badge"
+              style="margin-right: 0.3125%; background-color: #00bfa0;">{{ result.topics }}</span>
+            <span class="badge badge-light">{{ result.language }}</span>
+          </p>
+          <a href="{% url 'main:content' contentID=result.idContent %}">
+            <button class="btn btn-primary btn-block category-button border-0" style="background-color: #00bfa0;">View
+              Content</button>
+          </a>
+          {% elif result.topics == 'Parent Health' %}
+          <p>
+            <span class="badge badge-primary category-badge"
+              style="margin-right: 0.3125%; background-color: #9b19f5;">{{ result.topics }}</span>
+            <span class="badge badge-light">{{ result.language }}</span>
+          </p>
+
+          <a href="{% url 'main:content' contentID=result.idContent %}">
+            <button class="btn btn-primary btn-block category-button border-0" style="background-color: #9b19f5;">View
+              Content</button>
+          </a>
+          {% else %}
+          <p>
+            <span class="badge badge-primary category-badge" style="margin-right: 0.3125%;">{{ result.topics }}</span>
+            <span class="badge badge-light">{{ result.language }}</span>
+          </p>
+          <a href="{% url 'main:content' contentID=result.idContent %}">
+            <button class="btn btn-primary btn-block category-button border-0">View Content</button>
+          </a>
+
+          {% endif %}
         </div>
       </div>
       {% endfor %}

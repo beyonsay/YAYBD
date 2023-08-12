@@ -3,27 +3,63 @@
 {% block content %}
 {% load static %}
 <div class="container">
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <a href="{% url 'main:main' %}" class="btn btn-primary">Return to Main Page</a>
-        </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <a href="{% url 'main:main' %}" class="btn btn-primary">Return to Main Page</a>
     </div>
+  </div>
 
-    <div class="row" id = "content-container">
+  <div class="text-center">
+    <div class="row" id="content-container">
       {% for result in allcontent %}
-      <div class="col-md-6" style="margin-bottom: 2%;">
-        <div class="card">
+      <div class="col-md-6 content-item" data-category="{{ result.topics }}">
+        <div class="card" style="margin-bottom: 2%;">
           <h2>{{ result.title }}</h2>
+          {% if result.topics == 'Baby Development' %}
           <p>
-            <span class="badge badge-primary" style="margin-right: 0.3125%;">{{ result.topics }}</span>
-            <span class="badge badge-primary">{{ result.language }}</span>
+            <span class="badge badge-primary category-badge"
+              style="margin-right: 0.3125%; background-color: #ffa300;">{{ result.topics }}</span>
+            <span class="badge badge-light">{{ result.language }}</span>
           </p>
           <a href="{% url 'main:content' contentID=result.idContent %}">
-            <button class="btn btn-primary btn-block">View Content</button>
+            <button class="btn btn-primary btn-block category-button" style="background-color: #ffa300;">View
+              Content</button>
           </a>
+
+          {% elif result.topics == 'Baby Health' %}
+          <p>
+            <span class="badge badge-primary category-badge"
+              style="margin-right: 0.3125%; background-color: #00bfa0;">{{ result.topics }}</span>
+            <span class="badge badge-light">{{ result.language }}</span>
+          </p>
+          <a href="{% url 'main:content' contentID=result.idContent %}">
+            <button class="btn btn-primary btn-block category-button" style="background-color: #00bfa0;">View
+              Content</button>
+          </a>
+          {% elif result.topics == 'Parent Health' %}
+          <p>
+            <span class="badge badge-primary category-badge"
+              style="margin-right: 0.3125%; background-color: #9b19f5;">{{ result.topics }}</span>
+            <span class="badge badge-light">{{ result.language }}</span>
+          </p>
+
+          <a href="{% url 'main:content' contentID=result.idContent %}">
+            <button class="btn btn-primary btn-block category-button" style="background-color: #9b19f5;">View
+              Content</button>
+          </a>
+          {% else %}
+          <p>
+            <span class="badge badge-primary category-badge" style="margin-right: 0.3125%;">{{ result.topics }}</span>
+            <span class="badge badge-light">{{ result.language }}</span>
+          </p>
+          <a href="{% url 'main:content' contentID=result.idContent %}">
+            <button class="btn btn-primary btn-block category-button">View Content</button>
+          </a>
+          {% endif %}
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
+</div>
 {% endblock %}
