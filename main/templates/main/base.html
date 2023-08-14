@@ -5,7 +5,7 @@
 
 <head>
 	<style type="text/css">
-				ul {
+		ul {
 			list-style-type: none;
 		}
 
@@ -37,6 +37,7 @@
 			/* margin-top: 6em; */
 			/* Add margin to push the content below the sidenav */
 		}
+
 		.button-style {
 			display: inline-block;
 			padding: 10px 20px;
@@ -57,7 +58,30 @@
 			padding: 0.5em;
 		}
 
+		#suggestionsContainer {
+			position: absolute;
+			width: 100%;
+			max-height: 150px;
+			overflow-y: auto;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			z-index: 1;
+		}
 
+		.suggestion {
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		.suggestion:hover {
+			background-color: #f2f2f2;
+		}
+
+		#resultsContainer {
+			margin-top: 20px;
+			/* Add margin for spacing */
+		}
 	</style>
 
 	<meta charset="utf-8">
@@ -74,36 +98,46 @@
 		<a class="navbar-brand" href="{% url 'main:main' %}">
 			<img src="{% static '/images/BBP-Logo.png' %}" width="60" height="60" alt="Bhabhisana Baby Project logo">
 		</a>
+
+		<!-- <div class="search-container">
+			<div class="input-group search-box">
+				<input type="text" class="form-control" placeholder="Search" id="searchInput">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button">Search</button>
+				</div>
+			</div>
+			<div id="resultsContainer"></div>
+		</div> -->
+
 		<div class="navbar-nav">
 			<ul class="nav nav-pills nav-justified">
 				{% if user.is_authenticated %}
-					{% if user.username == 'BBPAdmin' %}
-					<a class="navbar-brand button-style" href="{% url 'admin:index' %}">
-						<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
-						Admin Site
-					</a>
-					{% endif %}
+				{% if user.username == 'BBPAdmin' %}
+				<a class="navbar-brand button-style" href="{% url 'admin:index' %}">
+					<img src="{% static '/images/parenthealth.png' %}" width="40" height="40" class="d-inline-block"
+						alt="">
+					Admin Site
+				</a>
+				{% endif %}
 
-					<a class="navbar-brand button-style" href="{% url 'logout' %}">
-						<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
-						Logout
-					</a>
+				<a class="navbar-brand button-style" href="{% url 'logout' %}">
+					<img src="{% static '/images/parenthealth.png' %}" width="40" height="40" class="d-inline-block"
+						alt="">
+					Logout
+				</a>
 
-			
-			{% else %}
+
+				{% else %}
 				<a class="navbar-brand button-style" href="{% url 'login' %}">
-					<img src="{% static '/images/parenthealth.png' %}"  width="40" height="40" class="d-inline-block" alt="">
+					<img src="{% static '/images/parenthealth.png' %}" width="40" height="40" class="d-inline-block"
+						alt="">
 					Login
-				  </a>
-			{% endif %}
-		</ul>
+				</a>
+				{% endif %}
+			</ul>
 		</div>
 	</nav>
-	
-	<!-- <div class="sidenav">
-		<a href="{% url 'main:main' %}">Home</a>
-		<a href="/create">Login</a>
-	</div> -->
+
 
 	<div id="content" name="content" class="main">
 		<!-- <h1 class="mt-2">My Site</h1> -->

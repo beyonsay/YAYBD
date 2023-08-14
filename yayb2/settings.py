@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
 ]
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',

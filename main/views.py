@@ -16,9 +16,20 @@ def main(request):
   return render(request, 'main/main.html', {'allcontent': allcontent})
 
 def content(request, contentID):
-
   file = Content.objects.get(idContent=contentID)
+
+  print(contentID)
+  print(file.file)
   return render(request, 'main/content.html', {'content': file})
+
+def search_suggestions(request):
+    query = request.GET.get('q')
+    suggestions = []
+
+    if query:
+        suggestions = Content.objects.filter(title__icontains=query).values_list('title', flat=True)[:5]  # Limit to 5 suggestions
+
+    return JsonResponse({'suggestions': suggestions})
 
 def get_content_by_category(request):
 

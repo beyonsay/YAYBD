@@ -49,3 +49,12 @@ def android_logout(request):
     request.auth.delete()
     
     return Response("Logged out successfully")
+
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def get_assigned_content(request):
+    user = request.user.id
+    allcontent = Content.objects.filter(assignedUsers=user)
+    serializer = ContentSerializer(allcontent, many=True, context={'request': request})  # Serialize a queryset of objects
+    return Response(serializer.data)

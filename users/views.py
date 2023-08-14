@@ -9,6 +9,5 @@ from django.contrib.auth.decorators import login_required
 def assigned(request):
     user = request.user.id
     allcontent = Content.objects.filter(assignedUsers=user)
-    print(allcontent)
 
     return render(request, 'users/assigned.html',  {'allcontent': allcontent})
