@@ -8,4 +8,5 @@ urlpatterns = [
     re_path('android_logout', views.android_logout),
     re_path('test_token', views.test_token),
     re_path('get_all_content', views.get_all_content),
+    re_path('get_assigned_content', views.get_assigned_content),
 ]
