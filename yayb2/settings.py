@@ -90,7 +90,7 @@ DATABASES = {
         "NAME": "yayb",
         "USER": "admin",
         "PASSWORD": "youandyourbaby",
-        "HOST": "database.cjg9ckuq0ifq.eu-north-1.rds.amazonaws.com",
+        "HOST": "db",#"database.cjg9ckuq0ifq.eu-north-1.rds.amazonaws.com",
         "PORT": "5432",
     }
     # "default": {
@@ -161,6 +161,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
-# Configure Django App for Heroku on settings.py.
-# import django_on_heroku
-# django_on_heroku.settings(locals())

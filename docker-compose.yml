@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=yayb
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=youandyourbaby
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=yayb
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=youandyourbaby
+    depends_on:
+      - db
